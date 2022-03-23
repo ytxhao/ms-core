@@ -112,6 +112,7 @@ def _RunGN(args):
     ]
     logging.info('_RunGN  yuhaoo args:%s', args)
     cmd.extend(args)
+    logging.info('_RunGN  yuhaoo cmd:%s', cmd)
     logging.debug('Running: %r', cmd)
     subprocess.check_call(cmd)
 
@@ -173,6 +174,7 @@ def Build(build_dir, arch, use_goma, extra_gn_args, extra_gn_switches,
     """Generates target architecture using GN and builds it using ninja."""
     logging.info('Building: %s', arch)
     output_directory = _GetOutputDirectory(build_dir, arch)
+    logging.info('Building output_directory: %s', output_directory)
     gn_args = {
         'target_os': 'android',
         'is_debug': False,
@@ -181,13 +183,15 @@ def Build(build_dir, arch, use_goma, extra_gn_args, extra_gn_switches,
         'target_cpu': _GetTargetCpu(arch),
         'use_goma': use_goma
     }
+    logging.info('Building gn_args: %s', gn_args)
     arm_version = _GetArmVersion(arch)
+    logging.info('Building arm_version: %s', arm_version)
     if arm_version:
         gn_args['arm_version'] = arm_version
     gn_args_str = '--args=' + ' '.join(
         [k + '=' + _EncodeForGN(v)
          for k, v in gn_args.items()] + extra_gn_args)
-
+    logging.info('Building gn_args_str: %s', gn_args_str)
     gn_args_list = ['gen', output_directory, gn_args_str]
     gn_args_list.extend(extra_gn_switches)
     _RunGN(gn_args_list)
@@ -272,10 +276,8 @@ def main():
     # logging.info("MANIFEST_FILE:%s", MANIFEST_FILE)
     # logging.info('info  yuhaoo args:%s', args)
     
-
-    #BuildAar(args.arch, args.output, args.use_goma, args.extra_gn_args,
-    #         args.build_dir, args.extra_gn_switches, args.extra_ninja_switches)
-
+    BuildAar(args.arch, args.output, args.use_goma, args.extra_gn_args,
+             args.build_dir, args.extra_gn_switches, args.extra_ninja_switches)
 
 if __name__ == '__main__':
     sys.exit(main())
