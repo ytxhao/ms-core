@@ -121,7 +121,7 @@ template("create_native_executable_dist") {
 }
 
 if (enable_java_templates) {
-  import("//build/config/sanitizers/sanitizers.gni")
+  #import("//build/config/sanitizers/sanitizers.gni")
 
   # JNI target implementation. See generate_jni or generate_jar_jni for usage.
   template("generate_jni_impl") {
@@ -1927,13 +1927,13 @@ if (enable_java_templates) {
         defines += [ "_IS_UBSAN" ]
       }
 
-      if (is_chrome_branded) {
-        defines += [ "_IS_CHROME_BRANDED" ]
-      }
+      # if (is_chrome_branded) {
+      #   defines += [ "_IS_CHROME_BRANDED" ]
+      # }
 
-      if (is_chromecast && chromecast_branding == "internal") {
-        defines += [ "_IS_CHROMECAST_BRANDING_INTERNAL" ]
-      }
+      # if (is_chromecast && chromecast_branding == "internal") {
+      #   defines += [ "_IS_CHROMECAST_BRANDING_INTERNAL" ]
+      # }
 
       if (defined(invoker.bundles_supported) && invoker.bundles_supported) {
         defines += [ "_BUNDLES_SUPPORTED" ]

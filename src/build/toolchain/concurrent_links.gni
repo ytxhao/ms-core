@@ -12,7 +12,7 @@ import("//build/config/apple/symbols.gni")
 import("//build/config/chromeos/ui_mode.gni")
 import("//build/config/compiler/compiler.gni")
 import("//build/config/coverage/coverage.gni")
-import("//build/config/sanitizers/sanitizers.gni")
+#import("//build/config/sanitizers/sanitizers.gni")
 import("//build/toolchain/toolchain.gni")
 
 declare_args() {

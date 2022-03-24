@@ -20,9 +20,9 @@ build_with_zorro = true
 checkout_google_benchmark = true
 
 # Use our own suppressions files.
-asan_suppressions_file = "//build/sanitizers/asan_suppressions.cc"
-lsan_suppressions_file = "//third_party/webrtc/tools_webrtc/sanitizers/lsan_suppressions_webrtc.cc"
-tsan_suppressions_file = "//third_party/webrtc/tools_webrtc/sanitizers/tsan_suppressions_webrtc.cc"
+# asan_suppressions_file = "//build/sanitizers/asan_suppressions.cc"
+# lsan_suppressions_file = "//third_party/webrtc/tools_webrtc/sanitizers/lsan_suppressions_webrtc.cc"
+# tsan_suppressions_file = "//third_party/webrtc/tools_webrtc/sanitizers/tsan_suppressions_webrtc.cc"
 msan_blacklist_path =
     rebase_path("//third_party/webrtc/tools_webrtc/msan/suppressions.txt", root_build_dir)
 ubsan_blacklist_path =

@@ -256,7 +256,7 @@ if (target_os == "android") {
 } else {
   assert(false, "Unsupported target_os: $target_os")
 }
-
+print("---------------custom_toolchain: $custom_toolchain _default_toolchain: $_default_toolchain")
 # If a custom toolchain has been set in the args, set it as default. Otherwise,
 # set the default toolchain for the platform (if any).
 if (custom_toolchain != "") {
@@ -335,7 +335,7 @@ default_compiler_configs = [
   "//build/config/compiler:default_init_stack_vars",
   "//build/config/compiler/pgo:default_pgo_flags",
   "//build/config/coverage:default_coverage",
-  "//build/config/sanitizers:default_sanitizer_flags",
+  #"//build/config/sanitizers:default_sanitizer_flags",
 ]
 
 if (is_win) {

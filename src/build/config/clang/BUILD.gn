@@ -5,31 +5,31 @@
 import("clang.gni")
 
 config("find_bad_constructs") {
-  if (clang_use_chrome_plugins) {
-    cflags = []
+  # if (clang_use_chrome_plugins) {
+  #   cflags = []
 
-    # The plugin is built directly into clang, so there's no need to load it
-    # dynamically.
-    cflags += [
-      "-Xclang",
-      "-add-plugin",
-      "-Xclang",
-      "find-bad-constructs",
-      "-Xclang",
-      "-plugin-arg-find-bad-constructs",
-      "-Xclang",
-      "checked-ptr-as-trivial-member",
-    ]
+  #   # The plugin is built directly into clang, so there's no need to load it
+  #   # dynamically.
+  #   cflags += [
+  #     "-Xclang",
+  #     "-add-plugin",
+  #     "-Xclang",
+  #     "find-bad-constructs",
+  #     "-Xclang",
+  #     "-plugin-arg-find-bad-constructs",
+  #     "-Xclang",
+  #     "checked-ptr-as-trivial-member",
+  #   ]
 
-    if (is_linux || is_chromeos || is_android || is_fuchsia) {
-      cflags += [
-        "-Xclang",
-        "-plugin-arg-find-bad-constructs",
-        "-Xclang",
-        "check-ipc",
-      ]
-    }
-  }
+  #   if (is_linux || is_chromeos || is_android || is_fuchsia) {
+  #     cflags += [
+  #       "-Xclang",
+  #       "-plugin-arg-find-bad-constructs",
+  #       "-Xclang",
+  #       "check-ipc",
+  #     ]
+  #   }
+  # }
 }
 
 # Enables some extra Clang-specific warnings. Some third-party code won't

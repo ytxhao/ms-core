@@ -37,11 +37,11 @@ SRC_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, os.pardir, os.pardir))
 CORE_DIR = os.path.normpath(os.path.join(SRC_DIR, 'third_party', 'core'))
 DEFAULT_ARCHS = ['armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64']
 NEEDED_SO_FILES = ['libms-core.so']
-JAR_FILE = 'lib.java/third_party/core/sdk/android/libms-core.jar'
+JAR_FILE = 'lib.java/third_party/core/sdk/android/libms-framework.jar'
 MANIFEST_FILE = 'sdk/android/AndroidManifest.xml'
 TARGETS = [
-    'third_party/webrtc/sdk/android:libwebrtc',
-    'third_party/webrtc/sdk/android:libms-core',
+    'third_party/ms-core/sdk/android:libms-framework',
+    'third_party/ms-core/sdk/android:libms-core',
 ]
 
 # sys.path.append(os.path.join(SCRIPT_DIR, '..', 'libs'))

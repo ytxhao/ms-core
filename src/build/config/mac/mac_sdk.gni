@@ -2,8 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import("//build/config/chrome_build.gni")
-import("//build/config/gclient_args.gni")
+# import("//build/config/chrome_build.gni")
+# import("//build/config/gclient_args.gni")
 import("//build/config/mac/mac_sdk_overrides.gni")
 import("//build/toolchain/goma.gni")
 import("//build/toolchain/toolchain.gni")
@@ -57,7 +57,7 @@ declare_args() {
 # check that current_toolchain is default_toolchain, and the file should
 # assert that current_os is "mac" once this file is no longer included by
 # iOS toolchains.
-if (is_chrome_branded && is_official_build && target_os != "ios") {
+if (is_official_build && target_os != "ios") {
   assert(!use_system_xcode ||
              mac_allow_system_xcode_for_official_builds_for_testing,
          "official branded builds should use hermetic xcode")

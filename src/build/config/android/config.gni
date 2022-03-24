@@ -80,7 +80,11 @@ if (is_android || is_chromeos) {
   }
 
   if (!defined(default_android_ndk_root)) {
-    default_android_ndk_root = "//third_party/android_ndk"
+    if (host_os == "linux") {
+      default_android_ndk_root = "//third_party/android_ndk/android-ndk-r22b-linux"
+    } else {
+      default_android_ndk_root = "//third_party/android_ndk/android-ndk-r22b-darwin"
+    }
     default_android_ndk_version = "r22"
     default_android_ndk_major_version = 22
   } else {

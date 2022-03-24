@@ -1,0 +1,19 @@
+import("third_party/ms-core/ms-core.gni")
+
+# group("default") {
+#   deps = []
+#   if (is_ios) {
+#     deps += [
+#       "//third_party/webrtc/sdk:framework_objc",
+#     ]
+#   } else if (is_android) {
+#     deps += [
+#       "//third_party/webrtc/sdk/android:libwebrtc",
+#     ]
+#   } else if (is_linux) {
+#     deps += [
+#       "//third_party/webrtc/sdk/linux:linux",
+#     ]
+#   }
+# }
+

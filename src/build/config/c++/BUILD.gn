@@ -1,6 +1,6 @@
 import("//build/config/c++/c++.gni")
-import("//build/config/chrome_build.gni")
-import("//build/config/chromeos/ui_mode.gni")
+# import("//build/config/chrome_build.gni")
+# import("//build/config/chromeos/ui_mode.gni")
 import("//build/config/dcheck_always_on.gni")
 import("//buildtools/deps_revisions.gni")
 
@@ -21,9 +21,9 @@ declare_args() {
 
 # TODO(xiaohuic): https://crbug/917533 Crashes on internal ChromeOS build.
 # Do unconditionally once the underlying problem is fixed.
-if (is_chromeos_ash && is_chrome_branded) {
-  libcxx_abi_unstable = false
-}
+# if (is_chromeos_ash && is_chrome_branded) {
+#   libcxx_abi_unstable = false
+# }
 
 # This is included by reference in the //build/config/compiler:runtime_library
 # config that is applied to all targets. It is here to separate out the logic

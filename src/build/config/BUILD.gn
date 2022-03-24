@@ -3,8 +3,8 @@
 # found in the LICENSE file.
 
 import("//build/config/c++/c++.gni")
-import("//build/config/chrome_build.gni")
-import("//build/config/chromecast_build.gni")
+# import("//build/config/chrome_build.gni")
+# import("//build/config/chromecast_build.gni")
 import("//build/config/crypto.gni")
 import("//build/config/dcheck_always_on.gni")
 import("//build/config/features.gni")
@@ -17,7 +17,7 @@ import("//build/config/ios/ios_sdk_overrides.gni")
 import("//build/config/mac/mac_sdk_overrides.gni")
 
 import("//build/config/pch.gni")
-import("//build/config/sanitizers/sanitizers.gni")
+#import("//build/config/sanitizers/sanitizers.gni")
 import("//build/config/ui.gni")
 import("//build/toolchain/goma.gni")
 if (is_android) {
@@ -75,30 +75,9 @@ config("feature_flags") {
     # setting use_ozone globally.
     defines += [ "USE_OZONE=1" ]
   }
-  if (use_x11) {
-    defines += [ "USE_X11=1" ]
-  }
-  if (is_asan || is_hwasan || is_lsan || is_tsan || is_msan) {
-    defines += [ "MEMORY_TOOL_REPLACES_ALLOCATOR" ]
-  }
-  if (is_asan) {
-    defines += [ "ADDRESS_SANITIZER" ]
-  }
-  if (is_lsan) {
-    defines += [ "LEAK_SANITIZER" ]
-  }
-  if (is_tsan) {
-    defines += [
-      "THREAD_SANITIZER",
-      "DYNAMIC_ANNOTATIONS_EXTERNAL_IMPL=1",
-    ]
-  }
-  if (is_msan) {
-    defines += [ "MEMORY_SANITIZER" ]
-  }
-  if (is_ubsan || is_ubsan_null || is_ubsan_vptr || is_ubsan_security) {
-    defines += [ "UNDEFINED_SANITIZER" ]
-  }
+  # if (use_x11) {
+  #   defines += [ "USE_X11=1" ]
+  # }
   if (is_official_build) {
     defines += [ "OFFICIAL_BUILD" ]
   }
@@ -245,9 +224,9 @@ group("common_deps") {
   # library**.  Please be careful adding new dependencies here.
   public_deps = []
 
-  if (using_sanitizer) {
-    public_deps += [ "//build/config/sanitizers:deps" ]
-  }
+  # if (using_sanitizer) {
+  #   public_deps += [ "//build/config/sanitizers:deps" ]
+  # }
 
   if (use_custom_libcxx) {
     public_deps += [ "//buildtools/third_party/libc++" ]
@@ -325,7 +304,7 @@ config("executable_config") {
   if (use_locally_built_instrumented_libraries) {
     configs += [ "//third_party/instrumented_libraries:locally_built_ldflags" ]
   }
-  configs += [ "//build/config/sanitizers:link_executable" ]
+  #configs += [ "//build/config/sanitizers:link_executable" ]
 }
 
 # Shared library configs -------------------------------------------------------
@@ -357,7 +336,7 @@ config("shared_library_config") {
   if (use_locally_built_instrumented_libraries) {
     configs += [ "//third_party/instrumented_libraries:locally_built_ldflags" ]
   }
-  configs += [ "//build/config/sanitizers:link_shared_library" ]
+  #configs += [ "//build/config/sanitizers:link_shared_library" ]
 }
 
 # Add this config to your target to enable precompiled headers.

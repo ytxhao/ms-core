@@ -74,7 +74,7 @@ def get_build_args(args):
                       'rtc_build_libvpx=false', 'rtc_disable_metrics=true',
                       'rtc_enable_protobuf=false']
     if args.os == "a":    # Android
-        build_arg_list.append('clang_use_chrome_plugins=false')
+        # build_arg_list.append('clang_use_chrome_plugins=false')
         build_arg_list.append('is_debug=false' if args.build == 'r' else 'is_debug=true')
     elif args.os == "i":  # iOS
         build_arg_list.append('rtc_use_metal_rendering=false')
@@ -83,10 +83,10 @@ def get_build_args(args):
         else:
             build_arg_list.append('symbol_level=0' if args.build == 'r' else 'symbol_level=2')
     elif args.os == "l":  # Linux
-        build_arg_list.append('rtc_use_x11=false')
-        build_arg_list.append('is_chrome_branded=true')
+        # build_arg_list.append('rtc_use_x11=false')
+        # build_arg_list.append('is_chrome_branded=true')
         build_arg_list.append('openh264_dec=true')
-        build_arg_list.append('clang_use_chrome_plugins=false')
+        # build_arg_list.append('clang_use_chrome_plugins=false')
         build_arg_list.append('is_debug=false' if args.build == 'r' else 'is_debug=true')
 
     build_args = " ".join(i for i in build_arg_list)
