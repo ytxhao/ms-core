@@ -9,12 +9,12 @@ import("//build/config/android/copy_ex.gni")
 import("//build/config/compiler/compiler.gni")
 import("//build/config/compute_inputs_for_analyze.gni")
 import("//build/config/coverage/coverage.gni")
-import("//build/config/python.gni")
+#import("//build/config/python.gni")
 #import("//build/config/sanitizers/sanitizers.gni")
-import("//build/toolchain/goma.gni")
-import("//build/toolchain/kythe.gni")
-import("//build/util/generate_wrapper.gni")
-import("//build_overrides/build.gni")
+# import("//build/toolchain/goma.gni")
+# import("//build/toolchain/kythe.gni")
+# import("//build/util/generate_wrapper.gni")
+# import("//build_overrides/build.gni")
 if (current_toolchain == default_toolchain) {
   import("//build/toolchain/concurrent_links.gni")
 }
@@ -3133,9 +3133,9 @@ if (enable_java_templates) {
 
       # Flag enable_kythe_annotations requires
       # checkout_android_prebuilts_build_tools=True in .gclient.
-      if (enable_kythe_annotations && !invoker.enable_errorprone) {
-        args += [ "--enable-kythe-annotations" ]
-      }
+      # if (enable_kythe_annotations && !invoker.enable_errorprone) {
+      #   args += [ "--enable-kythe-annotations" ]
+      # }
       if (invoker.requires_android) {
         args += [ "--bootclasspath=@FileArg($_rebased_build_config:android:sdk_interface_jars)" ]
       }

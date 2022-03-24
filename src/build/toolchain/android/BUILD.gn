@@ -5,7 +5,7 @@
 import("//build/config/android/config.gni")
 import("//build/config/clang/clang.gni")
 import("//build/config/compiler/compiler.gni")
-import("//build/config/ozone.gni")
+# import("//build/config/ozone.gni")
 import("//build/config/sysroot.gni")  # Imports android/config.gni.
 import("//build/toolchain/gcc_toolchain.gni")
 

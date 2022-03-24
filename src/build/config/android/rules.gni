@@ -12,8 +12,8 @@ import("//build/config/clang/clang.gni")
 import("//build/config/compiler/compiler.gni")
 import("//build/config/coverage/coverage.gni")
 import("//build/config/python.gni")
-import("//build/config/rts.gni")
-import("//build/config/zip.gni")
+# import("//build/config/rts.gni")
+# import("//build/config/zip.gni")
 import("//build/toolchain/toolchain.gni")
 
 assert(is_android)
@@ -31,9 +31,9 @@ if (target_cpu == "arm") {
 }
 
 _sanitizer_runtimes = []
-if (use_cfi_diag || is_ubsan || is_ubsan_security || is_ubsan_vptr) {
-  _sanitizer_runtimes = [ "$clang_base_path/lib/clang/$clang_version/lib/linux/libclang_rt.ubsan_standalone-$_sanitizer_arch-android.so" ]
-}
+# if (use_cfi_diag || is_ubsan || is_ubsan_security || is_ubsan_vptr) {
+#   _sanitizer_runtimes = [ "$clang_base_path/lib/clang/$clang_version/lib/linux/libclang_rt.ubsan_standalone-$_sanitizer_arch-android.so" ]
+# }
 
 # Creates a dist directory for a native executable.
 #
@@ -121,7 +121,7 @@ template("create_native_executable_dist") {
 }
 
 if (enable_java_templates) {
-  #import("//build/config/sanitizers/sanitizers.gni")
+  # import("//build/config/sanitizers/sanitizers.gni")
 
   # JNI target implementation. See generate_jni or generate_jar_jni for usage.
   template("generate_jni_impl") {
@@ -1564,6 +1564,7 @@ if (enable_java_templates) {
         requires_android =
             defined(invoker.requires_android) && invoker.requires_android
         possible_config_deps = _deps
+        print("======= _direct_deps_only:$_direct_deps_only")
         ignore_dependency_public_deps = _direct_deps_only
         build_config = _build_config
       }
@@ -1743,6 +1744,7 @@ if (enable_java_templates) {
       possible_config_deps = _deps
       supports_android = true
       requires_android = true
+      print("======= _direct_deps_only:$_direct_deps_only")
       ignore_dependency_public_deps = _direct_deps_only
       build_config = _build_config
     }
@@ -1927,13 +1929,13 @@ if (enable_java_templates) {
         defines += [ "_IS_UBSAN" ]
       }
 
-      # if (is_chrome_branded) {
-      #   defines += [ "_IS_CHROME_BRANDED" ]
-      # }
+      if (is_chrome_branded) {
+        defines += [ "_IS_CHROME_BRANDED" ]
+      }
 
-      # if (is_chromecast && chromecast_branding == "internal") {
-      #   defines += [ "_IS_CHROMECAST_BRANDING_INTERNAL" ]
-      # }
+      if (is_chromecast && chromecast_branding == "internal") {
+        defines += [ "_IS_CHROMECAST_BRANDING_INTERNAL" ]
+      }
 
       if (defined(invoker.bundles_supported) && invoker.bundles_supported) {
         defines += [ "_BUNDLES_SUPPORTED" ]

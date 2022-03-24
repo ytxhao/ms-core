@@ -6,10 +6,10 @@
 # import("//build/config/chromecast_build.gni")
 # import("//build/config/chromeos/args.gni")
 # import("//build/config/chromeos/ui_mode.gni")
-import("//build/config/compiler/pgo/pgo.gni")
+#import("//build/config/compiler/pgo/pgo.gni")
 #import("//build/config/sanitizers/sanitizers.gni")
-import("//build/toolchain/cc_wrapper.gni")
-import("//build/toolchain/goma.gni")
+# import("//build/toolchain/cc_wrapper.gni")
+# import("//build/toolchain/goma.gni")
 import("//build/toolchain/toolchain.gni")
 import("//build_overrides/build.gni")
 
@@ -67,11 +67,7 @@ declare_args() {
   # Use it by default on official-optimized android and Chrome OS builds, but
   # not ARC or linux-chromeos since it's been seen to not play nicely with
   # Chrome's clang. crbug.com/1033839
-  use_thin_lto =
-      is_cfi ||
-      (is_official_build && chrome_pgo_phase != 1 &&
-       (is_linux || is_win || (is_android && target_os != "chromeos") ||
-        ((is_chromeos_ash || is_chromeos_lacros) && is_chromeos_device)))
+  use_thin_lto = false
 
   # If true, use Goma for ThinLTO code generation where applicable.
   use_goma_thin_lto = false
@@ -109,7 +105,7 @@ declare_args() {
   enable_cet_shadow_stack = target_cpu == "x64"
 }
 
-assert(!is_cfi || use_thin_lto, "CFI requires ThinLTO")
+# assert(!is_cfi || use_thin_lto, "CFI requires ThinLTO")
 
 # If true, optimize for size. Does not affect windows builds.
 # Linux & Mac favor speed over size.
@@ -129,13 +125,7 @@ declare_args() {
 # and build arguments.
 # TODO(crbug.com/1052397): Consider changing is_chromeos_ash to is_chromeos after
 # lacros-chrome switches to target_os="chromeos".
-if (is_chromeos_ash || is_chromeos_lacros) {
-  # ChromeOS generally prefers frame pointers, to support CWP.
-  # However, Clang does not currently generate usable frame pointers in ARM
-  # 32-bit builds (https://bugs.llvm.org/show_bug.cgi?id=18505) so disable them
-  # there to avoid the unnecessary overhead.
-  enable_frame_pointers = current_cpu != "arm"
-} else if (is_apple || is_linux || is_chromeos) {
+if (is_apple || is_linux || is_chromeos) {
   enable_frame_pointers = true
 } else if (is_win) {
   # 64-bit Windows ABI doesn't support frame pointers.
@@ -224,7 +214,6 @@ declare_args() {
 strip_absolute_paths_from_debug_symbols_default =
     # TODO(crbug.com/1010267): remove '!use_clang_coverage', coverage build has
     # dependency to absolute path of source files.
-    !use_clang_coverage &&
     (is_android || is_fuchsia || is_nacl || (is_win && use_lld) || is_linux ||
      is_chromeos || (is_apple && !enable_dsyms))
 

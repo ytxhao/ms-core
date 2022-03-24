@@ -9,14 +9,14 @@
 if (is_android) {
   import("//build/config/android/config.gni")
   import("//build/config/android/rules.gni")
-  import("../../webrtc.gni")
+  import("../../ms-core.gni")
 
   group("android") {
-    if (!build_with_chromium && is_android) {
+    if (is_android) {
       public_deps = [
         ":libjingle_peerconnection_jni",
         ":libzorro",
-        ":libwebrtc",
+        ":libms-framework",
         ":native_api",
       ]
     }
@@ -26,7 +26,7 @@ if (is_android) {
   # Aggregate targets #
   #####################
 
-  dist_jar("libwebrtc") {
+  dist_jar("libms-framework") {
     _target_dir_name = get_label_info(":$target_name", "dir")
     output = "${root_out_dir}/lib.java${_target_dir_name}/${target_name}.jar"
     direct_deps_only = true
@@ -129,7 +129,7 @@ if (is_android) {
     ]
   }
 
-  rtc_shared_library("libzorro") {
+  rtc_shared_library("libms-core") {
     sources = [ "src/jni/jni_onload.cc" ]
 
     suppressed_configs += [ "//build/config/android:hide_all_but_jni_onload" ]
