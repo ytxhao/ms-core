@@ -8,7 +8,7 @@ group("default") {
     ]
   } else if (is_android) {
     deps += [
-      "//third_party/ms-core/sdk/android:ms-framework",
+      "//third_party/ms-core/sdk/android:libms-framework",
     ]
   } else if (is_linux) {
     deps += [
